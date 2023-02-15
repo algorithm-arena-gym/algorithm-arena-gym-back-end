@@ -66,7 +66,7 @@ export class MemberService {
       address='${updateMemberDto.address}',
       emergencyContact='${updateMemberDto.emergencyContact}',
       point=${updateMemberDto.point}
-      where memberID =${id}`
+      where memberID =${id}`,
     );
   }
 

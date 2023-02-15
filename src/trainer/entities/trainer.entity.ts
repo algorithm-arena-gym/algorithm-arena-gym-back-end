@@ -30,7 +30,7 @@ export class Trainer {
     congenitalDisease:string;
 
     @Column()
-    adress:string;
+    address:string;
 
     @Column()
     emergencyContact:string;
