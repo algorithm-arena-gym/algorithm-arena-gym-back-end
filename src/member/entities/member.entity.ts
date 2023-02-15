@@ -33,7 +33,7 @@ export class Member {
     rankID:number;
 
     @Column()
-    adress:string;
+    address:string;
 
     @Column()
     emergencyContact:string;
