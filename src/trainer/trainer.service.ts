@@ -10,7 +10,7 @@ export class TrainerService {
   constructor(
     @InjectRepository(Trainer)
     private trainerRepository: Repository<Trainer>,
-  ){}
+  ) {}
 
   create(createTrainerDto: CreateTrainerDto) {
     return this.trainerRepository.query(`
@@ -44,7 +44,9 @@ export class TrainerService {
   }
 
   findOne(id: number) {
-    return this.trainerRepository.query(`select * from trainer where trainerID=${id}`);
+    return this.trainerRepository.query(
+      `select * from trainer where trainerID=${id}`,
+    );
   }
 
   update(id: number, updateTrainerDto: UpdateTrainerDto) {
@@ -65,6 +67,8 @@ export class TrainerService {
   }
 
   remove(id: number) {
-    return this.trainerRepository.query(`delete from trainer where trainerID=${id}`);
+    return this.trainerRepository.query(
+      `delete from trainer where trainerID=${id}`,
+    );
   }
 }

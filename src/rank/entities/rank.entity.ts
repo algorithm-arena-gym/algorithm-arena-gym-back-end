@@ -1,16 +1,21 @@
-import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn} from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Rank {
-    @PrimaryGeneratedColumn()
-    rankID:number;
+  @PrimaryGeneratedColumn()
+  rankID: number;
 
-    @Column()
-    rankName:string;
+  @Column()
+  rankName: string;
 
-    @Column()
-    detail:string;
+  @Column()
+  detail: string;
 
-    @CreateDateColumn()
-    createAt:Date;
+  @CreateDateColumn()
+  createAt: Date;
 }

@@ -4,6 +4,6 @@ import { TrainerMemberController } from './trainer-member.controller';
 
 @Module({
   controllers: [TrainerMemberController],
-  providers: [TrainerMemberService]
+  providers: [TrainerMemberService],
 })
 export class TrainerMemberModule {}
