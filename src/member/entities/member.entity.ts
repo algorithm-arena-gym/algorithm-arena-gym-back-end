@@ -1,46 +1,51 @@
-import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn} from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Member {
-    @PrimaryGeneratedColumn()
-    memberID:number;
+  @PrimaryGeneratedColumn()
+  memberID: number;
 
-    @Column()
-    nameEng:string;
+  @Column()
+  nameEng: string;
 
-    @Column()
-    nameTh:string;
+  @Column()
+  nameTh: string;
 
-    @Column()
-    profilePic:string;
+  @Column()
+  profilePic: string;
 
-    @Column()
-    phone:string;
+  @Column()
+  phone: string;
 
-    @Column()
-    email:string;
+  @Column()
+  email: string;
 
-    @Column()
-    cID:string;
+  @Column()
+  cID: string;
 
-    @Column()
-    drugAllergy:string;
+  @Column()
+  drugAllergy: string;
 
-    @Column()
-    congenitalDisease:string;
+  @Column()
+  congenitalDisease: string;
 
-    @Column()
-    rankID:number;
+  @Column()
+  rankID: number;
 
-    @Column()
-    address:string;
+  @Column()
+  address: string;
 
-    @Column()
-    emergencyContact:string;
+  @Column()
+  emergencyContact: string;
 
-    @Column()
-    point:number;
+  @Column()
+  point: number;
 
-    @CreateDateColumn()
-    subscriptionDate:Date;
+  @CreateDateColumn()
+  subscriptionDate: Date;
 }

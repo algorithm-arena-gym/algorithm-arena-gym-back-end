@@ -1,19 +1,24 @@
-import { Entity, Column, PrimaryGeneratedColumn,CreateDateColumn} from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Course {
-    @PrimaryGeneratedColumn()
-    courseID:number;
+  @PrimaryGeneratedColumn()
+  courseID: number;
 
-    @Column()
-    courseName:string;
+  @Column()
+  courseName: string;
 
-    @Column()
-    price:number;
+  @Column()
+  price: number;
 
-    @Column()
-    detail:string;
+  @Column()
+  detail: string;
 
-    @CreateDateColumn()
-    createAt:Date;
+  @CreateDateColumn()
+  createAt: Date;
 }

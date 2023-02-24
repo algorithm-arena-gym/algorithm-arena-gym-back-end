@@ -7,6 +7,6 @@ import { TrainerMember } from './entities/trainer-member.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([TrainerMember])],
   controllers: [TrainerMemberController],
-  providers: [TrainerMemberService]
+  providers: [TrainerMemberService],
 })
 export class TrainerMemberModule {}

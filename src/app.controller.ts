@@ -8,8 +8,8 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private authService: AuthService
-    ) {}
+    private authService: AuthService,
+  ) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')

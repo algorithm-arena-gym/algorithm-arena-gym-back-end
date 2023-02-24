@@ -6,6 +6,6 @@ import { CourseMember } from './entities/course-member.entity';
 @Module({
   imports:[TypeOrmModule.forFeature([CourseMember])],
   controllers: [CourseMemberController],
-  providers: [CourseMemberService]
+  providers: [CourseMemberService],
 })
 export class CourseMemberModule {}
