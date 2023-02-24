@@ -1,26 +1,52 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRankDto } from './dto/create-rank.dto';
 import { UpdateRankDto } from './dto/update-rank.dto';
-
+import { Rank } from './entities/rank.entity';
+import { Repository
+ } from 'typeorm';
 @Injectable()
 export class RankService {
+  constructor(
+    @InjectRepository(Rank)
+    private rankRepository: Repository<Rank>,
+  ){}
+
   create(createRankDto: CreateRankDto) {
-    return 'This action adds a new rank';
+    return this.rankRepository.query(`
+    INSERT INTO rank(
+      
+      rankName,
+      detail
+      
+    )
+    VALUES('${createRankDto.rankName}',
+    '${createRankDto.detail}'
+    
+    )`);
   }
 
   findAll() {
-    return `This action returns all rank`;
+    return this.rankRepository.query(`select * from rank`);
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} rank`;
+    return this.rankRepository.query(`select * from rank where rankID=${id}`);
   }
 
   update(id: number, updateRankDto: UpdateRankDto) {
-    return `This action updates a #${id} rank`;
+    return this.rankRepository.query(`
+    update rank set
+    
+    rankName='${updateRankDto.rankName}',
+    detail='${updateRankDto.detail}',
+    
+    where rankID=${id}
+  
+    `);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} rank`;
+    return this.rankRepository.query(`delete from rank when rankID=${id}`);
   }
 }

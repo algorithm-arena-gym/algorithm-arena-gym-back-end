@@ -1,1 +1,10 @@
-export class CreateRankDto {}
+export class CreateRankDto {
+
+    
+
+    rankName:string;
+
+    detail:string;
+
+    
+}

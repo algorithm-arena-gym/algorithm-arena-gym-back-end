@@ -1,26 +1,56 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { RepeatConfig } from 'rxjs';
+import { Repository } from 'typeorm';
 import { CreateTrainerMemberDto } from './dto/create-trainer-member.dto';
 import { UpdateTrainerMemberDto } from './dto/update-trainer-member.dto';
+import { TrainerMember } from './entities/trainer-member.entity';
 
 @Injectable()
 export class TrainerMemberService {
+  constructor(
+    @InjectRepository(TrainerMember)
+    private trainerRepository: Repository<TrainerMember>,
+  ){}
+
   create(createTrainerMemberDto: CreateTrainerMemberDto) {
-    return 'This action adds a new trainerMember';
+    return this.trainerRepository.query(`
+    INSERT INTO trainer_member(
+
+      trainerID,
+      memberID,
+      trainingDate,
+      trainingTime
+    )
+    VALUES('${createTrainerMemberDto.trainerID}',
+    '${createTrainerMemberDto.memberID}',
+    '${createTrainerMemberDto.trainingDate}',
+    '${createTrainerMemberDto.trainingTime}'
+
+    )`);
   }
 
   findAll() {
-    return `This action returns all trainerMember`;
+    return this.trainerRepository.query(`select * from trainer_member`);
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} trainerMember`;
+    return this.trainerRepository.query(`select * from trainer_member where trinerID=${id}`);
   }
 
   update(id: number, updateTrainerMemberDto: UpdateTrainerMemberDto) {
-    return `This action updates a #${id} trainerMember`;
+    return this.trainerRepository.query(`
+    update trainer_member set
+
+      trainerID=${updateTrainerMemberDto.trainerID},
+      memberID=${updateTrainerMemberDto.memberID},
+      trainingDate='${updateTrainerMemberDto.trainingDate}',
+      trainingTime='${updateTrainerMemberDto.trainingTime}'
+      
+    `);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} trainerMember`;
+    return this.trainerRepository.query(`delete from trainer_member where trinerID=${id}`);
   }
 }
