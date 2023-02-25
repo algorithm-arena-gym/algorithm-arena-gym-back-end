@@ -1,10 +1,6 @@
 export class CreateRankDto {
 
-    
+  RankName:string;
 
-    rankName:string;
-
-    detail:string;
-
-    
+  Detail:string;
 }

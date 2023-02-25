@@ -45,8 +45,7 @@ export class TrainerService {
 
   findOne(id: number) {
     return this.trainerRepository.query(
-      `select * from trainer where trainerID=${id}`,
-    );
+      `select * from trainer where trainerID=${id}`);
   }
 
   update(id: number, updateTrainerDto: UpdateTrainerDto) {

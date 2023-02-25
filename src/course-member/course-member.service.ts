@@ -20,7 +20,7 @@ export class CourseMemberService {
         
         )
         VALUES('${createCourseMemberDto.courseID}',
-        '${createCourseMemberDto.memberID}',
+        '${createCourseMemberDto.memberID}'
         
         )`);
   }
@@ -38,13 +38,13 @@ export class CourseMemberService {
     update course_member set
       
       courseID=${updateCourseMemberDto.courseID},
-      memberID=${updateCourseMemberDto.memberID},
+      memberID=${updateCourseMemberDto.memberID}
      
-      where courseID=${id}
+      where courseMemberID=${id}
     `);
   }
 
   remove(id: number) {
-    return this.courseMemberReposity.query(`delete from course_member where courseID=${id}`);
+    return this.courseMemberReposity.query(`delete from course_member where courseMemberID=${id}`);
   }
 }

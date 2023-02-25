@@ -11,11 +11,10 @@ export class Rank {
   rankID: number;
 
   @Column()
-  rankName: string;
+  RankName: string;
 
   @Column()
-  detail: string;
+  Detail: string;
 
-  @CreateDateColumn()
-  createAt: Date;
+  
 }

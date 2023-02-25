@@ -46,11 +46,11 @@ export class TrainerMemberService {
       memberID=${updateTrainerMemberDto.memberID},
       trainingDate='${updateTrainerMemberDto.trainingDate}',
       trainingTime='${updateTrainerMemberDto.trainingTime}'
-      
+      WHERE trainerMemberID=${id}
     `);
   }
 
   remove(id: number) {
-    return this.trainerRepository.query(`delete from trainer_member where trinerID=${id}`);
+    return this.trainerRepository.query(`delete from trainer_member where trainerMemberID=${id}`);
   }
 }

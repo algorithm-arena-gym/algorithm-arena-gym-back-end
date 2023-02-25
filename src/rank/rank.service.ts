@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRankDto } from './dto/create-rank.dto';
 import { UpdateRankDto } from './dto/update-rank.dto';
 import { Rank } from './entities/rank.entity';
-import { Repository
- } from 'typeorm';
+import { Repository} from 'typeorm';
+
 @Injectable()
 export class RankService {
   constructor(
@@ -14,16 +14,7 @@ export class RankService {
 
   create(createRankDto: CreateRankDto) {
     return this.rankRepository.query(`
-    INSERT INTO rank(
-      
-      rankName,
-      detail
-      
-    )
-    VALUES('${createRankDto.rankName}',
-    '${createRankDto.detail}'
-    
-    )`);
+    INSERT INTO rank VALUES('','${createRankDto.Detail}','${createRankDto.RankName}')`);
   }
 
   findAll() {
@@ -38,8 +29,8 @@ export class RankService {
     return this.rankRepository.query(`
     update rank set
     
-    rankName='${updateRankDto.rankName}',
-    detail='${updateRankDto.detail}',
+    RankName='${updateRankDto.RankName}',
+    Detail='${updateRankDto.Detail}'
     
     where rankID=${id}
   
@@ -47,6 +38,6 @@ export class RankService {
   }
 
   remove(id: number) {
-    return this.rankRepository.query(`delete from rank when rankID=${id}`);
+    return this.rankRepository.query(`delete from rank where rankID=${id}`);
   }
 }
