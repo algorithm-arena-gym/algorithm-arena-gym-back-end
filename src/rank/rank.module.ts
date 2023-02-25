@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Rank } from './entities/rank.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Rank])],
+  imports: [TypeOrmModule.forFeature([Rank])],
   controllers: [RankController],
   providers: [RankService],
 })

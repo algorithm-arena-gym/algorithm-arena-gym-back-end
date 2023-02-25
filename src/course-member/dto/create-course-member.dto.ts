@@ -1,8 +1,5 @@
 export class CreateCourseMemberDto {
+  courseID: number;
 
-
-
-    courseID:number;
-
-    memberID:number;
+  memberID: number;
 }

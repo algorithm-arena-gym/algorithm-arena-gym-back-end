@@ -1,8 +1,8 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()
@@ -11,10 +11,11 @@ export class Rank {
   rankID: number;
 
   @Column()
-  RankName: string;
+  rankName: string;
 
   @Column()
-  Detail: string;
+  rankDetail: string;
 
-  
+  @CreateDateColumn()
+  createAt: Date;
 }

@@ -9,7 +9,7 @@ export class CourseMemberService {
   constructor(
     @InjectRepository(CourseMember)
     private courseMemberReposity: Repository<CourseMember>,
-  ){}
+  ) {}
 
   create(createCourseMemberDto: CreateCourseMemberDto) {
     return this.courseMemberReposity.query(`
@@ -30,7 +30,9 @@ export class CourseMemberService {
   }
 
   findOne(id: number) {
-    return this.courseMemberReposity.query(`select * from course_member where courseID=${id}`);
+    return this.courseMemberReposity.query(
+      `select * from course_member where courseID=${id}`,
+    );
   }
 
   update(id: number, updateCourseMemberDto: UpdateCourseMemberDto) {
@@ -45,6 +47,8 @@ export class CourseMemberService {
   }
 
   remove(id: number) {
-    return this.courseMemberReposity.query(`delete from course_member where courseMemberID=${id}`);
+    return this.courseMemberReposity.query(
+      `delete from course_member where courseMemberID=${id}`,
+    );
   }
 }

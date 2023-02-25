@@ -1,14 +1,13 @@
 export class CreateTrainerMemberDto {
+  trainerMemberID: number;
 
-    trainerMemberID:number;
+  trainerID: number;
 
-    trainerID:number;
+  memberID: number;
 
-    memberID:number;
+  trainingDate: string;
 
-    trainingDate:string;
+  trainingTime: string;
 
-    trainingTime:string;
-
-    createAt:Date;
+  createAt: Date;
 }

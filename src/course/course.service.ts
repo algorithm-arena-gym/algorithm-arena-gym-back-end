@@ -11,7 +11,7 @@ export class CourseService {
   constructor(
     @InjectRepository(Course)
     private courseReposity: Repository<Course>,
-  ){}
+  ) {}
 
   create(createCourseDto: CreateCourseDto) {
     return this.courseReposity.query(`
@@ -31,13 +31,14 @@ export class CourseService {
   }
 
   findOne(id: number) {
-    return this.courseReposity.query(`select * from course where courseID=${id}`);
+    return this.courseReposity.query(
+      `select * from course where courseID=${id}`,
+    );
   }
 
   update(id: number, updateCourseDto: UpdateCourseDto) {
     return this.courseReposity.query(`
     update course set 
-      
       courseName='${updateCourseDto.courseName}',
       price='${updateCourseDto.price}',
       detail='${updateCourseDto.detail}'
