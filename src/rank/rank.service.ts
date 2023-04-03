@@ -12,8 +12,8 @@ export class RankService {
     private rankReposity: Repository<Rank>,
   ) {}
   create(createRankDto: CreateRankDto) {
-    return this.rankReposity.query(`INSERT INTO \`rank\`(rankName,rankDetail)
-    VALUES('${createRankDto.rankName}','${createRankDto.rankDetail}')`);
+    return this.rankReposity.query(`INSERT INTO \`rank\`(rankPic,rankName,rankDetail)
+    VALUES('${createRankDto.rankPic}','${createRankDto.rankName}','${createRankDto.rankDetail}')`);
   }
 
   findAll() {
@@ -27,6 +27,7 @@ export class RankService {
   update(id: number, updateRankDto: UpdateRankDto) {
     return this.rankReposity.query(`
     update rank set 
+    rankPic='${updateRankDto.rankPic}',
     rankName='${updateRankDto.rankName}',
     rankDetail='${updateRankDto.rankDetail}' 
     where rankID=${id}`);

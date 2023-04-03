@@ -16,11 +16,13 @@ export class CourseService {
   create(createCourseDto: CreateCourseDto) {
     return this.courseReposity.query(`
     INSERT INTO course(
+      coursePic,
       courseName,
       price,
       detail
       )
-      VALUES('${createCourseDto.courseName}',
+      VALUES('${createCourseDto.coursePic}',
+      '${createCourseDto.courseName}',
       ${createCourseDto.price},
       '${createCourseDto.detail}'
       )`);
@@ -39,6 +41,7 @@ export class CourseService {
   update(id: number, updateCourseDto: UpdateCourseDto) {
     return this.courseReposity.query(`
     update course set 
+      coursePic='${updateCourseDto.coursePic}',
       courseName='${updateCourseDto.courseName}',
       price='${updateCourseDto.price}',
       detail='${updateCourseDto.detail}'

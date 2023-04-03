@@ -11,6 +11,9 @@ export class Rank {
   rankID: number;
 
   @Column()
+  rankPic: string;
+
+  @Column()
   rankName: string;
 
   @Column()
