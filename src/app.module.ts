@@ -18,6 +18,7 @@ import { Course } from './course/entities/course.entity';
 import { CourseMember } from './course-member/entities/course-member.entity';
 import { Rank } from './rank/entities/rank.entity';
 import { StatModule } from './stat/stat.module';
+import { RankCourseModule } from './rank-course/rank-course.module';
 
 
 @Module({
@@ -40,6 +41,7 @@ import { StatModule } from './stat/stat.module';
     CourseModule,
     RankModule,
     StatModule,
+    RankCourseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
