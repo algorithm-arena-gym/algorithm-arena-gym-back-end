@@ -11,6 +11,9 @@ export class Course {
   courseID: number;
 
   @Column()
+  coursePic: string;
+
+  @Column()
   courseName: string;
 
   @Column()
