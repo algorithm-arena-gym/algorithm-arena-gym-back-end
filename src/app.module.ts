@@ -31,7 +31,7 @@ import { StatModule } from './stat/stat.module';
       password: '1234',
       database: 'algorithm-arena-gym-db',
       entities: [Member, Trainer, TrainerMember, Course, CourseMember, Rank],
-      synchronize: false,
+      synchronize: true,
     }),
     MemberModule,
     TrainerModule,
