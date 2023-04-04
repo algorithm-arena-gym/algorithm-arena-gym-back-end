@@ -1,1 +1,4 @@
-export class CreateRankCourseDto {}
+export class CreateRankCourseDto {
+    rankID: number;
+    courseID: number;
+}
