@@ -36,7 +36,7 @@ export class TrainerMemberService {
 
   findOne(id: number) {
     return this.trainerRepository.query(
-      `select * from trainer_member where trinerID=${id}`,
+      `select * from trainer_member where trainerMemberID=${id}`,
     );
   }
 

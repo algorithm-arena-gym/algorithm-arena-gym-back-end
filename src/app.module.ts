@@ -20,6 +20,8 @@ import { Rank } from './rank/entities/rank.entity';
 import { StatModule } from './stat/stat.module';
 import { RankCourseModule } from './rank-course/rank-course.module';
 import { RankCourse } from './rank-course/entities/rank-course.entity';
+import { CourseDateTimeModule } from './course-date-time/course-date-time.module';
+import { CourseDateTime } from './course-date-time/entities/course-date-time.entity';
 
 
 @Module({
@@ -32,7 +34,7 @@ import { RankCourse } from './rank-course/entities/rank-course.entity';
       username: 'admin',
       password: '1234',
       database: 'algorithm-arena-gym-db',
-      entities: [Member, Trainer, TrainerMember,RankCourse, Course, CourseMember, Rank],
+      entities: [Member, Trainer, TrainerMember,RankCourse, Course, CourseMember, Rank,CourseDateTime],
       synchronize: true,
     }),
     MemberModule,
@@ -43,6 +45,7 @@ import { RankCourse } from './rank-course/entities/rank-course.entity';
     RankModule,
     StatModule,
     RankCourseModule,
+    CourseDateTimeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

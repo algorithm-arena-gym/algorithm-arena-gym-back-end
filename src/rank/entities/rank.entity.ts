@@ -19,6 +19,9 @@ export class Rank {
   @Column()
   rankDetail: string;
 
+  @Column()
+  rankPrice:number;
+
   @CreateDateColumn()
   createAt: Date;
 }

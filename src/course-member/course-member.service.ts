@@ -31,7 +31,7 @@ export class CourseMemberService {
 
   findOne(id: number) {
     return this.courseMemberReposity.query(
-      `select * from course_member where courseID=${id}`,
+      `select * from course_member where courseMemberID=${id}`,
     );
   }
 

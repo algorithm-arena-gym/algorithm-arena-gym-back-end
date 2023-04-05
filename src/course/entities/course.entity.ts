@@ -17,7 +17,7 @@ export class Course {
   courseName: string;
 
   @Column()
-  price: number;
+  trainerID:number;
 
   @Column()
   detail: string;

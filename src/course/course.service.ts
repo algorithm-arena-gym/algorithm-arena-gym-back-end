@@ -18,12 +18,12 @@ export class CourseService {
     INSERT INTO course(
       coursePic,
       courseName,
-      price,
+      trainerID,
       detail
       )
       VALUES('${createCourseDto.coursePic}',
       '${createCourseDto.courseName}',
-      ${createCourseDto.price},
+      ${createCourseDto.trainerID},
       '${createCourseDto.detail}'
       )`);
   }
@@ -43,7 +43,7 @@ export class CourseService {
     update course set 
       coursePic='${updateCourseDto.coursePic}',
       courseName='${updateCourseDto.courseName}',
-      price='${updateCourseDto.price}',
+      trainerID='${updateCourseDto.trainerID}',
       detail='${updateCourseDto.detail}'
       where courseID=${id}
     `);

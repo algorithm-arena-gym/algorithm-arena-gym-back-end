@@ -1,9 +1,6 @@
 export class CreateCourseDto {
-  
   coursePic: string;
   courseName: string;
-
-  price: number;
-
+  trainerID: number;
   detail: string;
 }

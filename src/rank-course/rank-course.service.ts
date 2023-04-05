@@ -19,8 +19,8 @@ export class RankCourseService {
       rankID,
       courseID
     )
-    VALUES('${createRankCourseDto.rankID})',
-    '${createRankCourseDto.courseID}'
+    VALUES(${createRankCourseDto.rankID},
+    ${createRankCourseDto.courseID}
     )`)
   }
 
@@ -30,23 +30,23 @@ export class RankCourseService {
 
   findOne(id: number) {
     return this.rankCourseRepository.query(
-      `select * from rank_course where rankID=${id}`,
+      `select * from rank_course where rankCourseID=${id}`,
     );
   }
 
   update(id: number, updateRankCourseDto: UpdateRankCourseDto) {
     return this.rankCourseRepository.query(`
-    update trainer_member set
+    update rank_course set
 
       rankID=${updateRankCourseDto.rankID},
       courseID=${updateRankCourseDto.courseID}
-       WHERE rankID=${id}
+       WHERE rankCourseID=${id}
     `);
   }
 
   remove(id: number) {
     return this.rankCourseRepository.query(
-      `delete from rank_course where rankID=${id}`,
+      `delete from rank_course where rankCourseID=${id}`,
     );
   }
 }
