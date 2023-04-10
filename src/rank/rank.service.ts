@@ -25,14 +25,39 @@ export class RankService {
   }
 
   update(id: number, updateRankDto: UpdateRankDto) {
-    return this.rankReposity.query(`
-    update rank set 
-    rankPic='${updateRankDto.rankPic}',
-    rankName='${updateRankDto.rankName}',
-    rankDetail='${updateRankDto.rankDetail}',
-    rankPrice='${updateRankDto.rankPrice}' 
-    where rankID=${id}`);
+    const queryParams = [];
+    let query = "update rank set";
+  
+    if (updateRankDto.rankPic !== undefined && updateRankDto.rankPic !== null) {
+      query += " rankPic=?,";
+      queryParams.push(updateRankDto.rankPic);
+    }
+  
+    if (updateRankDto.rankName !== undefined && updateRankDto.rankName !== null) {
+      query += " rankName=?,";
+      queryParams.push(updateRankDto.rankName);
+    }
+  
+    if (updateRankDto.rankDetail !== undefined && updateRankDto.rankDetail !== null) {
+      query += " rankDetail=?,";
+      queryParams.push(updateRankDto.rankDetail);
+    }
+  
+    if (updateRankDto.rankPrice !== undefined && updateRankDto.rankPrice !== null) {
+      query += " rankPrice=?,";
+      queryParams.push(updateRankDto.rankPrice);
+    }
+  
+    // Remove the trailing comma
+    query = query.slice(0, -1);
+  
+    query += " where rankID=?";
+    queryParams.push(id);
+    console.log(query)
+    console.log(queryParams)
+    return this.rankReposity.query(query, queryParams);
   }
+  
 
   remove(id: number) {
     return this.rankReposity.query(`delete from rank where ${id}=rankID`);
