@@ -19,11 +19,6 @@ export class StatService {
     this.statRepository.query(`SELECT trainerID, COUNT(memberID) as num_member FROM trainer_member GROUP BY trainerID ORDER BY num_member DESC LIMIT 5`),
     this.statRepository.query(`SELECT memberID, COUNT(courseID) as num_course FROM course_member GROUP BY memberID ORDER BY num_course DESC LIMIT 5`)
   ];
-
-  findAll() {
-    return this.stat;
-  }
-
   findOne(id: number) {
     return this.stat[id];
   }

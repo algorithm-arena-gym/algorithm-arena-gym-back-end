@@ -9,19 +9,19 @@ import { Repository } from 'typeorm';
 export class RankService {
   constructor(
     @InjectRepository(Rank)
-    private rankReposity: Repository<Rank>,
+    private rankRepository: Repository<Rank>,
   ) {}
   create(createRankDto: CreateRankDto) {
-    return this.rankReposity.query(`INSERT INTO \`rank\`(rankPic,rankName,rankDetail,rankPrice)
+    return this.rankRepository.query(`INSERT INTO \`rank\`(rankPic,rankName,rankDetail,rankPrice)
     VALUES('${createRankDto.rankPic}','${createRankDto.rankName}','${createRankDto.rankDetail}','${createRankDto.rankPrice}')`);
   }
 
   findAll() {
-    return this.rankReposity.query(`select * from rank`);
+    return this.rankRepository.query(`select * from rank`);
   }
 
   findOne(id: number) {
-    return this.rankReposity.query(`select * from rank where ${id}=rankID`);
+    return this.rankRepository.query(`select * from rank where ${id}=rankID`);
   }
 
   update(id: number, updateRankDto: UpdateRankDto) {
@@ -55,11 +55,11 @@ export class RankService {
     queryParams.push(id);
     console.log(query)
     console.log(queryParams)
-    return this.rankReposity.query(query, queryParams);
+    return this.rankRepository.query(query, queryParams);
   }
   
 
   remove(id: number) {
-    return this.rankReposity.query(`delete from rank where ${id}=rankID`);
+    return this.rankRepository.query(`delete from rank where ${id}=rankID`);
   }
 }

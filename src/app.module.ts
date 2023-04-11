@@ -24,6 +24,7 @@ import { CourseDateTimeModule } from './course-date-time/course-date-time.module
 import { CourseDateTime } from './course-date-time/entities/course-date-time.entity';
 
 
+
 @Module({
   imports: [
     AuthModule,
@@ -46,6 +47,7 @@ import { CourseDateTime } from './course-date-time/entities/course-date-time.ent
     StatModule,
     RankCourseModule,
     CourseDateTimeModule,
+    MemberModule
   ],
   controllers: [AppController],
   providers: [AppService],
