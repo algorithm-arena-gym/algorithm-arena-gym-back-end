@@ -40,12 +40,12 @@ export class CourseMemberService {
     let query = "update course_member set";
   
     if (updateCourseMemberDto.courseID !== undefined && updateCourseMemberDto.courseID !== null) {
-      query += " rankPic=?,";
+      query += " courseID=?,";
       queryParams.push(updateCourseMemberDto.courseID);
     }
   
     if (updateCourseMemberDto.memberID !== undefined && updateCourseMemberDto.memberID !== null) {
-      query += " rankName=?,";
+      query += " memberID=?,";
       queryParams.push(updateCourseMemberDto.memberID);
     }
   
