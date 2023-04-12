@@ -50,21 +50,71 @@ export class TrainerService {
   }
 
   update(id: number, updateTrainerDto: UpdateTrainerDto) {
-    return this.trainerRepository.query(`
-    update trainer set
-      nameEng='${updateTrainerDto.nameEng}',
-      nameTh='${updateTrainerDto.nameTh}',
-      profilePic='${updateTrainerDto.profilePic}',
-      phone='${updateTrainerDto.phone}',
-      email='${updateTrainerDto.email}',
-      cID='${updateTrainerDto.cID}',
-      drugAllergy='${updateTrainerDto.drugAllergy}',
-      congenitalDisease='${updateTrainerDto.congenitalDisease}',
-      address='${updateTrainerDto.address}',
-      emergencyContact='${updateTrainerDto.emergencyContact}'
-      where trainerID =${id}
-      `);
+    const queryParams = [];
+    let query = "UPDATE trainer SET ";
+    
+    if (updateTrainerDto.nameEng !== undefined && updateTrainerDto.nameEng !== null) {
+      query += "nameEng=?, ";
+      queryParams.push(updateTrainerDto.nameEng);
+    }
+  
+    if (updateTrainerDto.nameTh !== undefined && updateTrainerDto.nameTh !== null) {
+      query += "nameTh=?, ";
+      queryParams.push(updateTrainerDto.nameTh);
+    }
+  
+    if (updateTrainerDto.profilePic !== undefined && updateTrainerDto.profilePic !== null) {
+      query += "profilePic=?, ";
+      queryParams.push(updateTrainerDto.profilePic);
+    }
+  
+    if (updateTrainerDto.phone !== undefined && updateTrainerDto.phone !== null) {
+      query += "phone=?, ";
+      queryParams.push(updateTrainerDto.phone);
+    }
+  
+    if (updateTrainerDto.email !== undefined && updateTrainerDto.email !== null) {
+      query += "email=?, ";
+      queryParams.push(updateTrainerDto.email);
+    }
+  
+    if (updateTrainerDto.cID !== undefined && updateTrainerDto.cID !== null) {
+      query += "cID=?, ";
+      queryParams.push(updateTrainerDto.cID);
+    }
+  
+    if (updateTrainerDto.drugAllergy !== undefined && updateTrainerDto.drugAllergy !== null) {
+      query += "drugAllergy=?, ";
+      queryParams.push(updateTrainerDto.drugAllergy);
+    }
+  
+    if (updateTrainerDto.congenitalDisease !== undefined && updateTrainerDto.congenitalDisease !== null) {
+      query += "congenitalDisease=?, ";
+      queryParams.push(updateTrainerDto.congenitalDisease);
+    }
+  
+    if (updateTrainerDto.address !== undefined && updateTrainerDto.address !== null) {
+      query += "address=?, ";
+      queryParams.push(updateTrainerDto.address);
+    }
+  
+    if (updateTrainerDto.emergencyContact !== undefined && updateTrainerDto.emergencyContact !== null) {
+      query += "emergencyContact=?, ";
+      queryParams.push(updateTrainerDto.emergencyContact);
+    }
+  
+    // Remove the trailing comma and space
+    query = query.slice(0, -2);
+    
+    query += " WHERE trainerID=?";
+    queryParams.push(id);
+    
+    console.log(query);
+    console.log(queryParams);
+    
+    return this.trainerRepository.query(query, queryParams);
   }
+  
 
   remove(id: number) {
     return this.trainerRepository.query(
