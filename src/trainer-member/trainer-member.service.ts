@@ -41,16 +41,39 @@ export class TrainerMemberService {
   }
 
   update(id: number, updateTrainerMemberDto: UpdateTrainerMemberDto) {
-    return this.trainerRepository.query(`
-    update trainer_member set
+    const queryParams = [];
+    let query = "update trainer_member set";
 
-      trainerID=${updateTrainerMemberDto.trainerID},
-      memberID=${updateTrainerMemberDto.memberID},
-      trainingDate='${updateTrainerMemberDto.trainingDate}',
-      trainingTime='${updateTrainerMemberDto.trainingTime}'
-      WHERE trainerMemberID=${id}
-    `);
-  }
+    if (updateTrainerMemberDto.trainerID !== undefined && updateTrainerMemberDto.trainerID !== null) {
+      query += " trainerID=?,";
+      queryParams.push(updateTrainerMemberDto.trainerID);
+    }
+
+    if (updateTrainerMemberDto.memberID !== undefined && updateTrainerMemberDto.memberID !== null) {
+      query += " memberID=?,";
+      queryParams.push(updateTrainerMemberDto.memberID);
+    }
+
+    if (updateTrainerMemberDto.trainingDate !== undefined && updateTrainerMemberDto.trainingDate !== null) {
+      query += " trainingDate=?,";
+      queryParams.push(updateTrainerMemberDto.trainingDate);
+    }
+
+    if (updateTrainerMemberDto.trainingTime !== undefined && updateTrainerMemberDto.trainingTime !== null) {
+      query += " trainingTime=?,";
+      queryParams.push(updateTrainerMemberDto.trainingTime);
+    }
+
+    // Remove the trailing comma
+    query = query.slice(0, -1);
+
+    query += " where trainerMemberID=?";
+    queryParams.push(id);
+    console.log(query)
+    console.log(queryParams)
+    return this.trainerRepository.query(query, queryParams);
+}
+
 
   remove(id: number) {
     return this.trainerRepository.query(

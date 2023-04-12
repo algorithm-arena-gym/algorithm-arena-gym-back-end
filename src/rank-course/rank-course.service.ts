@@ -35,13 +35,24 @@ export class RankCourseService {
   }
 
   update(id: number, updateRankCourseDto: UpdateRankCourseDto) {
-    return this.rankCourseRepository.query(`
-    update rank_course set
+    let query = "UPDATE rank_course SET ";
+    const queryParams = [];
 
-      rankID=${updateRankCourseDto.rankID},
-      courseID=${updateRankCourseDto.courseID}
-       WHERE rankCourseID=${id}
-    `);
+    if (updateRankCourseDto.rankID !== undefined && updateRankCourseDto.rankID !== null) {
+      query += "rankID=?, ";
+      queryParams.push(updateRankCourseDto.rankID);
+    }
+    if (updateRankCourseDto.courseID !== undefined && updateRankCourseDto.courseID !== null) {
+      query += "courseID=?, ";
+      queryParams.push(updateRankCourseDto.courseID);
+    }
+    // Remove the trailing comma and space
+    query = query.slice(0, -2);
+    query += " WHERE rankCourseID=?";
+    queryParams.push(id);
+    console.log(query);
+    console.log(queryParams);
+    return this.rankCourseRepository.query(query, queryParams);
   }
 
   remove(id: number) {
