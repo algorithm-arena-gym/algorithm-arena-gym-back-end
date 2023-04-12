@@ -1,26 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePmCourseDto } from './dto/create-pm-course.dto';
-import { UpdatePmCourseDto } from './dto/update-pm-course.dto';
-
+import { InjectRepository } from '@nestjs/typeorm';
+import { PmCourse } from './entities/pm-course.entity';
+import { Repository } from 'typeorm';
 @Injectable()
 export class PmCourseService {
-  create(createPmCourseDto: CreatePmCourseDto) {
-    return 'This action adds a new pmCourse';
-  }
-
-  findAll() {
-    return `This action returns all pmCourse`;
-  }
-
+  constructor(
+    @InjectRepository(PmCourse)
+    private pmCourseRepository:Repository<PmCourse>,
+  ){}
   findOne(id: number) {
-    return `This action returns a #${id} pmCourse`;
-  }
-
-  update(id: number, updatePmCourseDto: UpdatePmCourseDto) {
-    return `This action updates a #${id} pmCourse`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} pmCourse`;
+    return this.pmCourseRepository.query(`
+    SELECT *
+    FROM course_member
+    JOIN course
+    ON course_member.courseID = course.courseID
+    JOIN course_date_time
+    ON course_date_time.courseID = course.courseID
+    WHERE course_member.memberID = ${id};
+    `);
   }
 }

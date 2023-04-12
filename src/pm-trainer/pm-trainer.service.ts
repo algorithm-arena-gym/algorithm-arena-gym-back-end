@@ -1,26 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePmTrainerDto } from './dto/create-pm-trainer.dto';
-import { UpdatePmTrainerDto } from './dto/update-pm-trainer.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { PmTrainer } from './entities/pm-trainer.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PmTrainerService {
-  create(createPmTrainerDto: CreatePmTrainerDto) {
-    return 'This action adds a new pmTrainer';
-  }
-
-  findAll() {
-    return `This action returns all pmTrainer`;
-  }
-
+  constructor(
+    @InjectRepository(PmTrainer)
+    private pmTrainerRepository:Repository<PmTrainer>,
+  ){}
   findOne(id: number) {
-    return `This action returns a #${id} pmTrainer`;
-  }
-
-  update(id: number, updatePmTrainerDto: UpdatePmTrainerDto) {
-    return `This action updates a #${id} pmTrainer`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} pmTrainer`;
+    return this.pmTrainerRepository.query(`
+    SELECT *
+    FROM member
+    JOIN trainer_member
+    JOIN trainer
+    ON trainer.trainerID=trainer_member.trainerID
+    ON member.memberID=trainer_member.memberID
+    WHERE member.memberID=${id}
+    `);
   }
 }

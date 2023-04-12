@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePtMemberDto } from './dto/create-pt-member.dto';
-import { UpdatePtMemberDto } from './dto/update-pt-member.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { PtMember } from './entities/pt-member.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PtMemberService {
-  create(createPtMemberDto: CreatePtMemberDto) {
-    return 'This action adds a new ptMember';
-  }
-
-  findAll() {
-    return `This action returns all ptMember`;
-  }
-
+  constructor(
+    @InjectRepository(PtMember)
+    private ptMemberRepository:Repository<PtMember>,
+  ){}
   findOne(id: number) {
-    return `This action returns a #${id} ptMember`;
-  }
-
-  update(id: number, updatePtMemberDto: UpdatePtMemberDto) {
-    return `This action updates a #${id} ptMember`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} ptMember`;
+    return this.ptMemberRepository.query(`SELECT * FROM member JOIN trainer_member ON trainer_member.memberID = member.memberID WHERE trainer_member.trainerID =${id}`);
   }
 }
