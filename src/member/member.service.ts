@@ -43,12 +43,7 @@ export class MemberService {
 
    findAll() {
     return this.memberRepository.query(`
-    SELECT *
-FROM member
-JOIN rank ON member.rankID = rank.rankID
-JOIN trainer_member ON trainer_member.memberID = member.memberID
-JOIN trainer ON trainer.trainerID = trainer_member.trainerID
-
+    SELECT * FROM member
   `);
   }
 
@@ -57,11 +52,6 @@ JOIN trainer ON trainer.trainerID = trainer_member.trainerID
       `
       SELECT *
       FROM member
-      JOIN rank ON member.rankID = rank.rankID
-      JOIN trainer_member ON trainer_member.memberID = member.memberID
-      JOIN trainer ON trainer.trainerID = trainer_member.trainerID
-      JOIN course_member ON course_member.memberID=member.memberID
-      JOIN course ON course.courseID=course_member.courseID
       where member.memberID =${id}
       `,
     )
