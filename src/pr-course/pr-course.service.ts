@@ -1,26 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePrCourseDto } from './dto/create-pr-course.dto';
-import { UpdatePrCourseDto } from './dto/update-pr-course.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { PrCourse } from './entities/pr-course.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PrCourseService {
-  create(createPrCourseDto: CreatePrCourseDto) {
-    return 'This action adds a new prCourse';
-  }
-
-  findAll() {
-    return `This action returns all prCourse`;
-  }
-
+  constructor(
+    @InjectRepository(PrCourse)
+    private prCourseRepository: Repository<PrCourse>,
+  ) {}
   findOne(id: number) {
-    return `This action returns a #${id} prCourse`;
+    return this.prCourseRepository.query(`SELECT * FROM rank_course JOIN course ON rank_course.courseID = course.courseID WHERE rankID=${id}`);
   }
 
-  update(id: number, updatePrCourseDto: UpdatePrCourseDto) {
-    return `This action updates a #${id} prCourse`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} prCourse`;
-  }
 }

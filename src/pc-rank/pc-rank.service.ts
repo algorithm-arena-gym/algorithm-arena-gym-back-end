@@ -1,26 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePcRankDto } from './dto/create-pc-rank.dto';
-import { UpdatePcRankDto } from './dto/update-pc-rank.dto';
+import { PcRank } from './entities/pc-rank.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PcRankService {
-  create(createPcRankDto: CreatePcRankDto) {
-    return 'This action adds a new pcRank';
-  }
-
-  findAll() {
-    return `This action returns all pcRank`;
-  }
-
+  constructor(
+    @InjectRepository(PcRank)
+    private pcRankRepository: Repository<PcRank>,
+  ) {}
   findOne(id: number) {
-    return `This action returns a #${id} pcRank`;
+    return this.pcRankRepository.query(`SELECT * FROM rank_course WHERE courseID=${id}`);
   }
 
-  update(id: number, updatePcRankDto: UpdatePcRankDto) {
-    return `This action updates a #${id} pcRank`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} pcRank`;
-  }
+  
 }

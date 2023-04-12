@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePcMemberDto } from './dto/create-pc-member.dto';
-import { UpdatePcMemberDto } from './dto/update-pc-member.dto';
+import { PcMember } from './entities/pc-member.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PcMemberService {
-  create(createPcMemberDto: CreatePcMemberDto) {
-    return 'This action adds a new pcMember';
-  }
-
-  findAll() {
-    return `This action returns all pcMember`;
-  }
-
+  constructor(
+    @InjectRepository(PcMember)
+    private pcMemberRepository: Repository<PcMember>,
+  ) {}
   findOne(id: number) {
-    return `This action returns a #${id} pcMember`;
-  }
+    return this.pcMemberRepository.query(`SELECT * FROM course_member WHERE courseID=${id}`);  }
 
-  update(id: number, updatePcMemberDto: UpdatePcMemberDto) {
-    return `This action updates a #${id} pcMember`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} pcMember`;
-  }
 }
