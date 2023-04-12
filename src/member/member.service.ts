@@ -52,23 +52,76 @@ export class MemberService {
   }
 
   update(id: number, updateMemberDto: UpdateMemberDto) {
-    return this.memberRepository.query(
-      `update member set
-      nameEng = '${updateMemberDto.nameEng}',
-      nameTh='${updateMemberDto.nameTh}',
-      profilePic='${updateMemberDto.profilePic}',
-      phone='${updateMemberDto.phone}',
-      email='${updateMemberDto.email}',
-      cID='${updateMemberDto.cID}',
-      drugAllergy='${updateMemberDto.drugAllergy}',
-      congenitalDisease='${updateMemberDto.congenitalDisease}',
-      rankID=${updateMemberDto.rankID},
-      address='${updateMemberDto.address}',
-      emergencyContact='${updateMemberDto.emergencyContact}',
-      point=${updateMemberDto.point}
-      where memberID =${id}`,
-    );
-  }
+    const queryParams = [];
+    let query = "UPDATE member SET";
+
+    if (updateMemberDto.nameEng!== undefined && updateMemberDto.nameEng !== null) {
+      query += " nameEng=?,";
+      queryParams.push(updateMemberDto.nameEng);
+    }
+
+    if (updateMemberDto.nameTh !== undefined && updateMemberDto.nameTh !== null) {
+      query += " nameTh=?,";
+      queryParams.push(updateMemberDto.nameTh);
+    }
+
+    if (updateMemberDto.profilePic !== undefined && updateMemberDto.profilePic !== null) {
+      query += " profilePic=?,";
+      queryParams.push(updateMemberDto.profilePic);
+    }
+
+    if (updateMemberDto.phone !== undefined && updateMemberDto.phone !== null) {
+      query += " phone=?,";
+      queryParams.push(updateMemberDto.phone);
+    }
+    if (updateMemberDto.email !== undefined && updateMemberDto.email !== null) {
+      query += " email=?,";
+      queryParams.push(updateMemberDto.email);
+    }
+
+    if (updateMemberDto.cID !== undefined && updateMemberDto.cID !== null) {
+      query += " cID=?,";
+      queryParams.push(updateMemberDto.cID);
+    }
+
+    if (updateMemberDto.drugAllergy !== undefined && updateMemberDto.drugAllergy!== null) {
+      query += " drugAllergy=?,";
+      queryParams.push(updateMemberDto.drugAllergy);
+    }
+    if (updateMemberDto.congenitalDisease !== undefined && updateMemberDto.congenitalDisease !== null) {
+      query += " congenitalDisease=?,";
+      queryParams.push(updateMemberDto.congenitalDisease);
+    }
+
+    if (updateMemberDto.rankID !== undefined && updateMemberDto.rankID !== null) {
+      query += " rankID=?,";
+      queryParams.push(updateMemberDto.rankID);
+    }
+
+    if (updateMemberDto.address !== undefined && updateMemberDto.address !== null) {
+      query += " address=?,";
+      queryParams.push(updateMemberDto.address);
+    }
+    if (updateMemberDto.emergencyContact!== undefined && updateMemberDto.emergencyContact !== null) {
+      query += " emergencyContact=?,";
+      queryParams.push(updateMemberDto.emergencyContact);
+    }
+
+    if (updateMemberDto.point !== undefined && updateMemberDto.point !== null) {
+      query += " point=?,";
+      queryParams.push(updateMemberDto.point);
+    }
+
+  
+    // Remove the trailing comma
+    query = query.slice(0, -1);
+
+    query += " WHERE memberID=?";
+    queryParams.push(id);
+    console.log(query)
+    console.log(queryParams)
+    return this.memberRepository.query(query, queryParams);
+}
 
   remove(id: number) {
     return this.memberRepository.query(

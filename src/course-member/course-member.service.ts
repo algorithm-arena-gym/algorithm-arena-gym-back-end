@@ -36,14 +36,28 @@ export class CourseMemberService {
   }
 
   update(id: number, updateCourseMemberDto: UpdateCourseMemberDto) {
-    return this.courseMemberReposity.query(`
-    update course_member set
-      
-      courseID=${updateCourseMemberDto.courseID},
-      memberID=${updateCourseMemberDto.memberID}
-     
-      where courseMemberID=${id}
-    `);
+    const queryParams = [];
+    let query = "update course_member set";
+  
+    if (updateCourseMemberDto.courseID !== undefined && updateCourseMemberDto.courseID !== null) {
+      query += " rankPic=?,";
+      queryParams.push(updateCourseMemberDto.courseID);
+    }
+  
+    if (updateCourseMemberDto.memberID !== undefined && updateCourseMemberDto.memberID !== null) {
+      query += " rankName=?,";
+      queryParams.push(updateCourseMemberDto.memberID);
+    }
+  
+    
+    // Remove the trailing comma
+    query = query.slice(0, -1);
+  
+    query += " where courseMemberID=?";
+    queryParams.push(id);
+    console.log(query)
+    console.log(queryParams)
+    return this.courseMemberReposity.query(query, queryParams);
   }
 
   remove(id: number) {

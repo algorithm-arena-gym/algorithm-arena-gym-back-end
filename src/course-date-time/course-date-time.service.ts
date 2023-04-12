@@ -26,12 +26,33 @@ export class CourseDateTimeService {
   }
 
   update(id: number, updateCourseDateTimeDto: UpdateCourseDateTimeDto) {
-    return  this.courseDateTimeRepository.query(`update course_date_time set
-    courseID=${updateCourseDateTimeDto.courseID},
-    courseDate='${updateCourseDateTimeDto.courseDate}',
-    courseTime='${updateCourseDateTimeDto.courseTime}'
-    where courseDateTimeID=${id}`)
+    const queryParams = [];
+    let query = "update course_date_time set";
+  
+    if (updateCourseDateTimeDto.courseID !== undefined && updateCourseDateTimeDto.courseID !== null) {
+      query += " courseID=?,";
+      queryParams.push(updateCourseDateTimeDto.courseID);
+    }
+  
+    if (updateCourseDateTimeDto.courseDate !== undefined && updateCourseDateTimeDto.courseDate !== null) {
+      query += " courseDate=?,";
+      queryParams.push(updateCourseDateTimeDto.courseDate);
+    }
+    if (updateCourseDateTimeDto.courseTime !== undefined && updateCourseDateTimeDto.courseTime !== null) {
+      query += " courseTime=?,";
+      queryParams.push(updateCourseDateTimeDto.courseTime);
+    }
+    
+    // Remove the trailing comma
+    query = query.slice(0, -1);
+  
+    query += " where courseDateTimeID=?";
+    queryParams.push(id);
+    console.log(query)
+    console.log(queryParams)
+    return this.courseDateTimeRepository.query(query, queryParams);
   }
+  
 
   remove(id: number) {
     return this.courseDateTimeRepository.query(`delete from course_date_time where courseDateTimeID=${id}`);
