@@ -72,6 +72,11 @@ export class CourseService {
   }
 
   remove(id: number) {
-    return this.courseReposity.query(`delete from course where courseID=${id}`);
+    return this.courseReposity.query(`
+    delete from course where courseID=${id};
+    delete from course_date_time where courseID=${id};
+    delete from course_member where courseID=${id};
+    delete from rank_course where courseID=${id};
+    `);
   }
 }

@@ -60,6 +60,9 @@ export class RankService {
   
 
   remove(id: number) {
-    return this.rankRepository.query(`delete from rank where ${id}=rankID`);
+    return this.rankRepository.query(`
+    delete from rank where ${id}=rankID;
+    delete from rank_course where rankID=${id};
+    `);
   }
 }

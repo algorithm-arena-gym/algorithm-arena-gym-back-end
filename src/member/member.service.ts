@@ -131,7 +131,10 @@ export class MemberService {
 
   remove(id: number) {
     return this.memberRepository.query(
-      `delete from member where memberID =${id}`,
+      `delete from member where memberID =${id};
+      delete from trainer_member where memberID=${id};
+      delete from course_member where memberID=${id};
+      `,
     );
   }
 }

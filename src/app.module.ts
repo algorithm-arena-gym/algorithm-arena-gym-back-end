@@ -47,6 +47,7 @@ import { PrCourseModule } from './pr-course/pr-course.module';
       database: 'algorithm-arena-gym-db',
       entities: [Member, Trainer, TrainerMember,RankCourse, Course, CourseMember, Rank,CourseDateTime],
       synchronize: true,
+      multipleStatements:true
     }),
     MemberModule,
     TrainerModule,
