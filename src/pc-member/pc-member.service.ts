@@ -10,6 +10,6 @@ export class PcMemberService {
     private pcMemberRepository: Repository<PcMember>,
   ) {}
   findOne(id: number) {
-    return this.pcMemberRepository.query(`SELECT * FROM course_member WHERE courseID=${id}`);  }
+    return this.pcMemberRepository.query(`SELECT * FROM course_member JOIN member ON member.memberID=course_member.memberID WHERE courseID=${id}`);  }
 
 }

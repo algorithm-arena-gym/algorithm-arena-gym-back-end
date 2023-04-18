@@ -10,8 +10,6 @@ export class PcRankService {
     private pcRankRepository: Repository<PcRank>,
   ) {}
   findOne(id: number) {
-    return this.pcRankRepository.query(`SELECT * FROM rank_course WHERE courseID=${id}`);
+    return this.pcRankRepository.query(`SELECT * FROM rank_course JOIN rank ON rank.rankID=rank_course.rankID WHERE courseID=${id}`);
   }
-
-  
 }

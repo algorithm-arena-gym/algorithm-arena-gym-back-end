@@ -118,7 +118,11 @@ export class TrainerService {
 
   remove(id: number) {
     return this.trainerRepository.query(
-      `delete from trainer where trainerID=${id}`,
-    );
+      `DELETE FROM trainer WHERE trainerID=${id};
+      DELETE FROM trainer_member WHERE trainerID=${id};`
+    )
   }
 }
+      // DELETE FROM trainer_member WHERE trainerID=${id}
+      // DELETE FROM course_date_time WHERE courseID IN (SELECT courseID FROM course WHERE trainerID=${id});
+      // DELETE FROM course WHERE trainerID=${id};
