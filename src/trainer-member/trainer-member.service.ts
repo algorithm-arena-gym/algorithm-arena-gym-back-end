@@ -31,12 +31,32 @@ export class TrainerMemberService {
   }
 
   findAll() {
-    return this.trainerRepository.query(`select * from trainer_member`);
+    return this.trainerRepository.query(`
+    SELECT
+      *
+      FROM
+      trainer_member
+      ORDER BY
+      CASE
+           WHEN trainingDate = 'Sunday' THEN 1
+           WHEN trainingDate = 'Monday' THEN 2
+           WHEN trainingDate = 'Tuesday' THEN 3
+           WHEN trainingDate = 'Wednesday' THEN 4
+           WHEN trainingDate = 'Thursday' THEN 5
+           WHEN trainingDate = 'Friday' THEN 6
+           WHEN trainingDate = 'Saturday' THEN 7
+      END ASC,trainingTime
+    `);
   }
 
   findOne(id: number) {
-    return this.trainerRepository.query(
-      `select * from trainer_member where trainerMemberID=${id}`,
+    return this.trainerRepository.query(`
+      SELECT
+      *
+      FROM
+      trainer_member
+      WHERE trainerMemberID=${id}
+      `,
     );
   }
 

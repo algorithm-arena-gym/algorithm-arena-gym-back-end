@@ -18,7 +18,22 @@ export class CourseDateTimeService {
   }
 
   findAll() {
-    return this.courseDateTimeRepository.query(`select * from course_date_time`);
+    return this.courseDateTimeRepository.query(`
+    SELECT
+      *
+      FROM
+      course_date_time
+      ORDER BY
+      CASE
+           WHEN courseDate = 'Sunday' THEN 1
+           WHEN courseDate = 'Monday' THEN 2
+           WHEN courseDate = 'Tuesday' THEN 3
+           WHEN courseDate = 'Wednesday' THEN 4
+           WHEN courseDate = 'Thursday' THEN 5
+           WHEN courseDate = 'Friday' THEN 6
+           WHEN courseDate = 'Saturday' THEN 7
+      END ASC,courseTime
+    `);
   }
 
   findOne(id: number) {

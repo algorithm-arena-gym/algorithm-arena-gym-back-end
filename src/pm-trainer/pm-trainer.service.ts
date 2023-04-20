@@ -18,6 +18,16 @@ export class PmTrainerService {
     ON trainer.trainerID=trainer_member.trainerID
     ON member.memberID=trainer_member.memberID
     WHERE member.memberID=${id}
+    ORDER BY
+     CASE
+          WHEN trainingDate = 'Sunday' THEN 1
+          WHEN trainingDate = 'Monday' THEN 2
+          WHEN trainingDate = 'Tuesday' THEN 3
+          WHEN trainingDate = 'Wednesday' THEN 4
+          WHEN trainingDate = 'Thursday' THEN 5
+          WHEN trainingDate = 'Friday' THEN 6
+          WHEN trainingDate = 'Saturday' THEN 7
+     END ASC,trainingTime
     `);
   }
 }

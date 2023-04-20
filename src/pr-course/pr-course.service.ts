@@ -10,7 +10,9 @@ export class PrCourseService {
     private prCourseRepository: Repository<PrCourse>,
   ) {}
   findOne(id: number) {
-    return this.prCourseRepository.query(`SELECT * FROM rank_course JOIN course ON rank_course.courseID = course.courseID WHERE rankID=${id}`);
+    return this.prCourseRepository.query(`
+    SELECT * FROM rank_course JOIN course ON rank_course.courseID = course.courseID WHERE rankID=${id}
+    `);
   }
 
 }
